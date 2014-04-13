@@ -22,7 +22,5 @@ test:
   timeout: 5000
 
 production:
-  adapter: postgresql
-  database: cmspayment_live
-  pool: 5
-  timeout: 5000
+  adapter: mysql
+  url: <%= ENV['CMS_DB_URL']%>
