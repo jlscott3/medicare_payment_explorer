@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  belongs_to: 
+  place_of_service: 
+  hcpcs_code: 
+  line_srvc_cnt: 1
+  bene_unique_cnt: 1
+  bene_day_srvc_cnt: 1
+  avg_mc_allowed_amt: 1
+  stdev_mc_allowed_amt: 1
+  avg_sub_chrg_amt: 1
+  stdev_sub_chrg_amt: 1
+  avg_mc_pmt_amt: 1
+  stdev_mc_pmt_amt: 1
+
+two:
+  belongs_to: 
+  place_of_service: 
+  hcpcs_code: 
+  line_srvc_cnt: 1
+  bene_unique_cnt: 1
+  bene_day_srvc_cnt: 1
+  avg_mc_allowed_amt: 1
+  stdev_mc_allowed_amt: 1
+  avg_sub_chrg_amt: 1
+  stdev_sub_chrg_amt: 1
+  avg_mc_pmt_amt: 1
+  stdev_mc_pmt_amt: 1

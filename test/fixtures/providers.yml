@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  npi: 1
+  last_org_name: 
+  first_name: 
+  mi: 
+  credentials: 
+  gender: 
+  entity_code: 
+  street1: 
+  street2: 
+  city: 
+  zip: 
+  state: 
+  country: 
+  type: 
+
+two:
+  npi: 1
+  last_org_name: 
+  first_name: 
+  mi: 
+  credentials: 
+  gender: 
+  entity_code: 
+  street1: 
+  street2: 
+  city: 
+  zip: 
+  state: 
+  country: 
+  type: 
