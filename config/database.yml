@@ -22,5 +22,5 @@ test:
   timeout: 5000
 
 production:
-  adapter: mysql
+  adapter: mysql2
   url: <%= ENV['CMS_DB_URL']%>
