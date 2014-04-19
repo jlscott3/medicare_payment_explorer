@@ -33,7 +33,7 @@ namespace :import do
       @place_of_Service = l[15]
       @hcpcs_code = l[16]
       @hcpcs_description  = l[17]
-      line_srvc_cnt  = l[18]
+      @line_srvc_cnt  = l[18]
       @bene_unique_cnt  = l[19]
       @bene_day_srvc_cnt  = l[20]
       @average_Medicare_allowed_amt = l[21]
@@ -80,22 +80,22 @@ namespace :import do
       #if we don't know this provider, create
       if prov.nil?
         prov = Provider.new
-      prov.npi = npi
-      prov.last_org_name = l[1]
-      prov.first_name = l[2]
-      prov.mi = l[3]
-      prov.credentials  = l[4]
-      prov.gender  = l[5]
-      prov.entity_code = l[6]
-      prov.street1 = l[7]
-      prov.street2 = l[8]
-      prov.city = l[9]
-      prov.zip = l[10]
-      prov.state = l[11]
-      prov.country = l[12]
-      prov.specialty  = l[13]
-      prov.mc_participation = l[14]
-      prov.save
+        prov.npi = npi
+        prov.last_org_name = l[1]
+        prov.first_name = l[2]
+        prov.mi = l[3]
+        prov.credentials  = l[4]
+        prov.gender  = l[5]
+        prov.entity_code = l[6]
+        prov.street1 = l[7]
+        prov.street2 = l[8]
+        prov.city = l[9]
+        prov.zip = l[10]
+        prov.state = l[11]
+        prov.country = l[12]
+        prov.specialty  = l[13]
+        prov.mc_participation = l[14]
+        prov.save
       end
 
       #add payment
@@ -119,9 +119,9 @@ namespace :import do
       thecode = Hcpcs.find_by code:pmt.hcpcs_code
       if thecode.nil?
         thecode = Hcpcs.new
-      thecode.code = pmt.hcpcs_code
-      thecode.description = hcpcs_description
-      thecode.save
+        thecode.code = pmt.hcpcs_code
+        thecode.description = hcpcs_description
+        thecode.save
       end
     end
 
