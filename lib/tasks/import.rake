@@ -1,5 +1,10 @@
 namespace :import do
+  desc "Imports all data and generates summary information"
   desc "Generates provider CSV file"
+  task :all, :infile do |t, args|
+    
+  end
+  
   task :provider_csv, :infile, :outfile do |t, args|
     args.with_defaults(:infile => "Medicare-Physician-and-Other-Supplier-PUF-CY2012.txt",:outfile => "cms_2012_providers.csv")
     puts "using infile #{args.infile}, outfile #{args.outfile}"
@@ -142,5 +147,16 @@ namespace :import do
       puts "Importing #{r[0]}"
       Specialty.new(:name => r[0], :count => r[1], :max_pmt => r[2], :avg_pmt => r[3], :total_pmt => r[4]).save()
     end
+  end
+  
+  desc "Adds total payment info to proviers"
+  task :provider_total_pmt => :environment do
+    puts "Updating provider total payments"
+    sql = "update providers, (select provider_id, sum(avg_mc_pmt_amt * line_srvc_cnt) AS prov_total_pmt from payments group by provider_id) AS npisum                                                         
+           set total_pmt=prov_total_pmt                                               
+           where npisum.provider_id = providers.id;" 
+    response = ActiveRecord::Base.connection.execute(sql)
+    puts "Providers updated"
+  
   end
 end
