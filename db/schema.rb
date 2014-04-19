@@ -11,10 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140413112147) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140419114946) do
 
   create_table "hcpcs", force: true do |t|
     t.string   "code",        limit: 5
@@ -66,5 +63,15 @@ ActiveRecord::Schema.define(version: 20140413112147) do
   end
 
   add_index "providers", ["npi"], name: "index_providers_on_npi", unique: true, using: :btree
+
+  create_table "specialties", force: true do |t|
+    t.string   "name",       limit: 43
+    t.integer  "count"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "total_pmt",  limit: 8
+    t.integer  "max_pmt",    limit: 8
+    t.integer  "avg_pmt",    limit: 8
+  end
 
 end
