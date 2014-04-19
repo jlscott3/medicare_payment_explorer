@@ -1,4 +1,4 @@
-  <h1>Listing Providers</h1>
+  <h1><%= @specialty.name %> Providers</h1>
  
 <table>
   <tr>
@@ -11,7 +11,7 @@
  
 <% @providers.each do |prov| %>
   <tr>
-    <td><%= prov.npi %></td>
+    <td><%= link_to prov.npi, "/providers/#{prov.npi}" %></td>
     <td><%= prov.last_org_name + ", " + prov.first_name%></td>
     <td><%= prov.street1 + " " + prov.city + ", " + prov.state%></td>
     <td><%= prov.specialty %></td>

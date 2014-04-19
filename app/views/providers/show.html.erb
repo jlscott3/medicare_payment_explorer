@@ -1,1 +1,31 @@
-<h1>Provider <%= @provider.npi %></h1>
+
+<h1>Provider <%= @provider.first_name %> <%= @provider.last_org_name%></h1>
+
+<h2>Total Payments: <%= number_to_currency(@provider.total_pmt) %></h2>
+<table>
+  <thead>
+    <tr>
+      <th>HCPCS Code</th>
+      <th>Description</th>
+      <th>Count</th>
+      <th>Unique Patients</th>
+      <th>Unique Patient-Days</th>
+      <th>Avg Pmt/Svc</th>
+      <th>Payments for service</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @provider.payments.order("line_srvc_cnt * avg_mc_pmt_amt desc").each do |pmt| %>
+      <tr>
+        <td><%= pmt.hcpcs_code %></td>
+        <td><%= Hcpcs.find_by(code: pmt.hcpcs_code).description%></td>
+        <td><%= pmt.line_srvc_cnt %></td>
+        <td><%= pmt.bene_unique_cnt %></td>
+        <td><%= pmt.bene_day_srvc_cnt %></td>
+        <td><%= number_to_currency(pmt.avg_mc_pmt_amt) %></td>
+        <td><%= number_to_currency(pmt.line_srvc_cnt * pmt.avg_mc_pmt_amt) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  </table>

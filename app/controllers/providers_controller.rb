@@ -4,17 +4,17 @@ class ProvidersController < ApplicationController
   end
   
   def payment_by_specialty
-    # @sums = Providers.order("total_pmt_amt").limit(20);
+    @specialty = Specialty.find_by(id: params[:specialty])
     
     if params[:state]
-      @providers = Provider.where("specialty = ? and state=?", params[:specialty], params[:state]).order("total_pmt desc").limit(20);
+      @providers = Provider.where("specialty = ? and state=?", @specialty.name, params[:state]).order("total_pmt desc").limit(20);
     else
-      @providers = Provider.where("specialty = ?", params[:specialty]).order("total_pmt desc").limit(20);
+      @providers = Provider.where("specialty = ?", @specialty.name).order("total_pmt desc").limit(20);
     end
-    # 
+    
    
     respond_to do |format|
-      format.html  # index.html.erb
+      format.html  # payment_by_specialty.html.erb
       format.json  { render :json => @providers.to_json() }
     end
   end

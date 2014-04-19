@@ -1,7 +1,9 @@
 CmsProvider2012::Application.routes.draw do
   get "welcome/index"
   resources :providers
-  get "payment/specialty/:specialty(/state/:state)" => 'providers#payment_by_specialty'
+  resources :specialties
+  
+  get "providers/specialty/:specialty(/state/:state)" => 'providers#payment_by_specialty'
   
   get "payment(/state/:state)" => "providers#payment"
 
@@ -9,7 +11,7 @@ CmsProvider2012::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'welcome#index'
+  root 'specialties#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

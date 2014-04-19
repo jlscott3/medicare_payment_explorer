@@ -1,0 +1,25 @@
+<h1>Listing specialties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Count</th>
+      <th>Average Payment</th>
+      <th>Total Payment</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @specialties.each do |specialty| %>
+      <tr>
+        <td><%= link_to specialty.name, "/providers/specialty/#{specialty.id}" %></td>
+        <td><%= specialty.count %></td>
+        <td><%= number_to_currency(specialty.avg_pmt) %></td>
+        <td><%= number_to_currency(specialty.total_pmt) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
