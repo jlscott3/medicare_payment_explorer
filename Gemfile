@@ -21,6 +21,13 @@ gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# use angular.js
+gem 'angularjs-rails'
+
+# use twitter bootstrap
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -28,7 +35,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 #postgres adapter
-gem 'pg'
+#gem 'pg'
 
 #mysql adapter
 gem 'mysql2'

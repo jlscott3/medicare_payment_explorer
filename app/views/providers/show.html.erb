@@ -1,8 +1,16 @@
+<div class="page-header">
+	<h1><%= @provider.first_name %> <%= @provider.last_org_name%>, <%= @provider.credentials%></h1>
+</div>
 
-<h1>Provider <%= @provider.first_name %> <%= @provider.last_org_name%></h1>
+<h2>Address</h2>
+<div>
+	<p><%= @provider.street1%></p>
+	<p><%= @provider.street2%></p>
+	<p><%= @provider.city%>, <%= @provider.state %>  <%=@provider.zip%></p>
+</div>
 
 <h2>Total Payments: <%= number_to_currency(@provider.total_pmt) %></h2>
-<table>
+<table class="table table-bordered table-hover">
   <thead>
     <tr>
       <th>HCPCS Code</th>
