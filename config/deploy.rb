@@ -1,14 +1,14 @@
 # config valid only for Capistrano 3.1
 lock '3.1.0'
 
-set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+set :application, 'medicare_payment_explorer'
+set :repo_url, 'git@github.com:jlscott3/medicare_payment_explorer.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
-# set :deploy_to, '/var/www/my_app'
+set :deploy_to, '/var/www/medicare_payment_explorer'
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -34,15 +34,18 @@ set :repo_url, 'git@example.com:me/my_repo.git'
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
+after "deploy", "deploy:cleanup"
 namespace :deploy do
 
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+      execute "mkdir -p #{release_path}/tmp"
+      execute :touch, release_path.join('tmp/restart.txt')
     end
   end
+  
 
   after :publishing, :restart
 
@@ -52,6 +55,15 @@ namespace :deploy do
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
+    end
+  end
+  
+  namespace :symlink do
+    #symlink database.yml from shared directory to release
+    task :shared do
+      on roles(:web), in: :groups do
+        execute "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+      end
     end
   end
 
