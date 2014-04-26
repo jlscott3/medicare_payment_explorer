@@ -11,6 +11,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+#database config file
+/config/database.yml
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
@@ -21,3 +24,4 @@
 #CMS data
 Medicare-Physician-and-Other-Supplier-PUF-CY2012.zip
 Medicare-Physician-and-Other-Supplier-PUF-CY2012/*
+
